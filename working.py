@@ -7,7 +7,7 @@ import jinja2
 
 folder_configuration = "configuration"
 #add this files current loaction to the folder
-folder_configuration = os.path.join(os.path.dirname(__file__), folder_configuration, "configuration.yaml")
+folder_configuration = os.path.join(os.path.dirname(__file__), folder_configuration)
 file_configuration = os.path.join(folder_configuration, "configuration.yaml")
 #import templates
 with open(file_configuration, 'r') as stream:
