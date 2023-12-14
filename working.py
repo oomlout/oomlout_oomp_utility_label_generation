@@ -126,6 +126,11 @@ def get_jinja2_template(**kwargs):
     with open(file_output, "w", encoding="utf-8") as outfile:
         outfile.write(markdown_string)
         print(f"jinja2 template file written: {file_output}")
+        #delete pdf version if it exists
+        file_output_pdf = file_output.replace(".svg",".pdf")
+        if os.path.exists(file_output_pdf):
+            os.remove(file_output_pdf)
+            print(f"pdf file deleted: {file_output_pdf}")
 
 if __name__ == '__main__':
     #folder is the path it was launched from
@@ -133,6 +138,6 @@ if __name__ == '__main__':
     kwargs = {}
     folder = os.path.dirname(__file__)
     #folder = "C:/gh/oomlout_oomp_builder/parts"
-    folder = "C:/gh/oomlout_oomp_part_generation_version_1/parts"
+    #folder = "C:/gh/oomlout_oomp_part_generation_version_1/parts"
     kwargs["folder"] = folder
     main(**kwargs)
