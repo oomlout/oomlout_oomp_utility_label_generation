@@ -68,7 +68,7 @@ def generate_label_generic(**kwargs):
 
     for file_template_details in file_template_list:
         file_template = file_template_details["file_template_absolute"]
-        file_output = f"{file_template_details["file_output"]}.svg"
+        file_output = f"{file_template_details['file_output']}.svg"
         file_output = os.path.join(directory, file_output)
         #      yaml part
         file_yaml = f"{directory}/working.yaml"
