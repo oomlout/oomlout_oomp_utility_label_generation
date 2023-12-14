@@ -1,0 +1,4 @@
+- file_template: template/template_label_76_2_mm_50_8_mm.svg.j2
+  file_output: template_label_76_2_mm_50_8_mm
+- file_template: template/template_label_15_mm_30_mm.svg.j2
+  file_output: template_label_15_mm_30_mm
