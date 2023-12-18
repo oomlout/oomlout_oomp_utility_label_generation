@@ -25,7 +25,7 @@
    inkscape:deskcolor="#d1d1d1"
    inkscape:document-units="mm"
    inkscape:zoom="5.6051765"
-   inkscape:cx="14.629334"
+   inkscape:cx="81.174963"
    inkscape:cy="43.620392"
    inkscape:window-width="1680"
    inkscape:window-height="987"
@@ -230,8 +230,8 @@
      sodipodi:role="line"
      id="tspan35"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.992px;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Bold';fill:#ffffff;stroke-width:26.4583"
-     x="1258.7888"
-     y="474.92395">{{ p.oomlout_short_code }}</tspan></text><text
+     x="1258.7889"
+     y="474.92395">{{ p.oomlout_short_code_upper }}</tspan></text><text
    xml:space="preserve"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:300.002px;line-height:1;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Bold';text-align:center;text-anchor:middle;clip-rule:evenodd;fill:#000000;fill-rule:evenodd;stroke-width:26.4583;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
    x="1666.5488"
@@ -252,7 +252,7 @@
      id="tspan35-4-8"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:199.99px;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Bold';fill:#000000;stroke-width:26.4583"
      x="-1058.4673"
-     y="437.48477">{{ p.md_5_6_alpha_upper }}</tspan></text><text
+     y="437.48477">{{ p.md5_6_alpha_upper }}</tspan></text><text
    xml:space="preserve"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:499.992px;line-height:1;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI Bold';text-align:center;text-anchor:middle;clip-rule:evenodd;fill:#000000;fill-rule:evenodd;stroke-width:26.4583;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
    x="113.50988"
