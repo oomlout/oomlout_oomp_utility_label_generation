@@ -79,7 +79,7 @@ def generate_label_generic(**kwargs):
                     details = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:   
                     print(exc)
-        test_attribute = file_template_details.GET("test_attreibute", "")
+        test_attribute = file_template_details.get("test_attreibute", "")
         if test_attribute == "" or test_attribute in details:
                 
             #      file part
