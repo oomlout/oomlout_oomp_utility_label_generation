@@ -1,6 +1,9 @@
-- file_template: template/template_label_oomlout_project_bolt_25_mm_25_mm.svg.j2
-  file_output: label_bolt_25_mm_25_mm
-  test_attribute: oomlout_short_code
+- file_template: template/template_label_oomlout_project_bolt_76_2_mm_50_8_mm.svg.j2
+  file_output: label_bolt_76_2_mm_50_8_mm
+  test_attribute: oomlout_bolt_size
+#- file_template: template/template_label_oomlout_project_bolt_25_mm_25_mm.svg.j2
+#  file_output: label_bolt_25_mm_25_mm
+#  test_attribute: oomlout_short_code
 - file_template: template/template_label_76_2_mm_50_8_mm.svg.j2
   file_output: label_76_2_mm_50_8_mm  
 - file_template: template/template_label_15_mm_30_mm.svg.j2
