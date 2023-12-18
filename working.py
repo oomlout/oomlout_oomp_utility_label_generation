@@ -79,25 +79,27 @@ def generate_label_generic(**kwargs):
                     details = yaml.load(stream, Loader=yaml.FullLoader)
                 except yaml.YAMLError as exc:   
                     print(exc)
-        
-        #      file part
-        files = []    
-        #get a list of recursive files
-        files = glob.glob(f"{directory}/**/*.*", recursive=True)
-        #replace all \\ with /
-        for i in range(len(files)):
-            files[i] = files[i].replace("\\","/")
-        #remove the directory from the file name
-        directory = directory.replace("\\","/")
-        for i in range(len(files)):
-            files[i] = files[i].replace(f"{directory}/","")    
-        files2 = copy.deepcopy(files)
-        details["files"] = files2
+        test_attribute = file_template_details.GET("test_attreibute", "")
+        if test_attribute == "" or test_attribute in details:
+                
+            #      file part
+            files = []    
+            #get a list of recursive files
+            files = glob.glob(f"{directory}/**/*.*", recursive=True)
+            #replace all \\ with /
+            for i in range(len(files)):
+                files[i] = files[i].replace("\\","/")
+            #remove the directory from the file name
+            directory = directory.replace("\\","/")
+            for i in range(len(files)):
+                files[i] = files[i].replace(f"{directory}/","")    
+            files2 = copy.deepcopy(files)
+            details["files"] = files2
 
-        file_template = file_template
-        file_output = file_output
-        dict_data = details
-        get_jinja2_template(file_template=file_template,file_output=file_output,dict_data=dict_data)
+            file_template = file_template
+            file_output = file_output
+            dict_data = details
+            get_jinja2_template(file_template=file_template,file_output=file_output,dict_data=dict_data)
 
 def get_jinja2_template(**kwargs):
     file_template = kwargs.get("file_template","")
