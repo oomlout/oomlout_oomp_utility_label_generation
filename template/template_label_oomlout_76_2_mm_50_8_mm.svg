@@ -26,7 +26,7 @@
    inkscape:document-units="mm"
    inkscape:zoom="1.0664063"
    inkscape:cx="274.75457"
-   inkscape:cy="268.65934"
+   inkscape:cy="162.69597"
    inkscape:window-width="1680"
    inkscape:window-height="987"
    inkscape:window-x="-8"
@@ -273,7 +273,7 @@
    id="Layer_x0020_1"
    inkscape:label="Layer 1">&#10;  <metadata
    id="CorelCorpID_0Corel-Layer" />&#10;  <g
-   transform="matrix(2.64845E-014 1 -1 2.64845E-014 9433.78 -2955.62)"
+   transform="rotate(90,7533.4557,1900.3243)"
    id="g41">&#10;   <text
    x="8419.4727"
    y="2540"
@@ -317,7 +317,7 @@
    class="fil1 fnt2"
    id="text48"><tspan
      style="text-align:center;text-anchor:middle"
-     id="tspan60">{{ p.amd5_6_alpha_upper }}</tspan></text>&#10;  </g>&#10;  &#10;  &#10;  &#10;  &#10;  &#10;  &#10;  <rect
+     id="tspan60">{{ p.md5_6_alpha_upper }}</tspan></text>&#10;  </g>&#10;  &#10;  &#10;  &#10;  &#10;  &#10;  &#10;  <rect
    class="fil0"
    x="2014"
    y="2500"
