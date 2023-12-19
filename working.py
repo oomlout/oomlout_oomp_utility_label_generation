@@ -121,7 +121,11 @@ def get_jinja2_template(**kwargs):
     try:
         markdown_string = jinja2.Template(markdown_string).render(p=data2)
     except Exception as e:
-        print(f"error in jinja2 template: {file_template}")
+        print(f"error in jinja2 template: {file_template}")        
+        print(f".")
+        print(f".")
+        print(f".")
+        print(f".")
         print(e)
         markdown_string = f"markdown_string_error\n{e}"
     #make directory if it doesn't exist
