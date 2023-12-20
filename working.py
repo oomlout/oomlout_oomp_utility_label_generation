@@ -42,13 +42,15 @@ def create_recursive(**kwargs):
     kwargs["folder"] = folder
     folder_template_absolute = kwargs.get("folder_template_absolute", "")
     kwargs["folder_template_absolute"] = folder_template_absolute
+    filter = kwargs.get("filter", "")
     for item in os.listdir(folder):
-        item_absolute = os.path.join(folder, item)
-        if os.path.isdir(item_absolute):
-            #if working.yaml exists in the folder
-            if os.path.exists(os.path.join(item_absolute, "working.yaml")):
-                kwargs["directory"] = item_absolute
-                create(**kwargs)
+        if filter in folder:
+            item_absolute = os.path.join(folder, item)
+            if os.path.isdir(item_absolute):
+                #if working.yaml exists in the folder
+                if os.path.exists(os.path.join(item_absolute, "working.yaml")):
+                    kwargs["directory"] = item_absolute
+                    create(**kwargs)
 
 def create(**kwargs):
     directory = kwargs.get("directory", os.getcwd())    
