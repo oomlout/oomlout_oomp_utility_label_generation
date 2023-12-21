@@ -44,7 +44,7 @@ def create_recursive(**kwargs):
     kwargs["folder_template_absolute"] = folder_template_absolute
     filter = kwargs.get("filter", "")
     for item in os.listdir(folder):
-        if filter in folder:
+        if filter in item:
             item_absolute = os.path.join(folder, item)
             if os.path.isdir(item_absolute):
                 #if working.yaml exists in the folder
