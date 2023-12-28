@@ -34,7 +34,7 @@ def main(**kwargs):
     folder = folder.replace("\\","/")
     
     kwargs["file_template_list"] = configuration
-    print(f"oomlout_oomp_utility_readme_generation for folder: {folder}")
+    print(f"oomlout_oomp_utility_label_generation for folder: {folder}")
     create_recursive(**kwargs)
     
 def create_recursive(**kwargs):
