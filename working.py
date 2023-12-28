@@ -53,7 +53,7 @@ def create_recursive(**kwargs):
                     kwargs["directory"] = item_absolute
                     create(**kwargs)
                     count += 1
-                    if count > 100:
+                    if count % 100 == 0:
                         print(f"count: {count}")
 
 def create(**kwargs):
