@@ -362,10 +362,10 @@
    y="0"><tspan
      x="77.963858"
      y="13.47196"
-     id="tspan1">{{ p.name_no_class }</tspan><tspan
-     x="216.11329"
-     y="27.271929"
-     id="tspan2">}</tspan></text><text
+     id="tspan3">{{ p.name_no_class }}&#10;</tspan><tspan
+     x="77.34244"
+     y="41.071897"
+     id="tspan5">{{ bip_39_word_space_2 }}</tspan></text><text
    x="243.83334"
    y="2758.2852"
    class="fil1 fnt1"
