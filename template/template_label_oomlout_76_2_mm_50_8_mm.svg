@@ -27,10 +27,10 @@
    inkscape:zoom="2.1328126"
    inkscape:cx="225.99266"
    inkscape:cy="89.318677"
-   inkscape:window-width="1920"
-   inkscape:window-height="1057"
-   inkscape:window-x="1672"
-   inkscape:window-y="2054"
+   inkscape:window-width="1680"
+   inkscape:window-height="1027"
+   inkscape:window-x="18"
+   inkscape:window-y="-8"
    inkscape:window-maximized="1"
    inkscape:current-layer="Layer_x0020_1" />&#10; <defs
    id="defs41"><rect
@@ -362,10 +362,10 @@
    y="0"><tspan
      x="77.963858"
      y="13.47196"
-     id="tspan3">{{ p.name_no_class }}&#10;</tspan><tspan
+     id="tspan1">{{ p.name_no_class }}&#10;</tspan><tspan
      x="77.34244"
      y="41.071897"
-     id="tspan5">{{ bip_39_word_space_2 }}</tspan></text><text
+     id="tspan4">{{ bip_39_word_space_2 }}</tspan></text><text
    x="243.83334"
    y="2758.2852"
    class="fil1 fnt1"
