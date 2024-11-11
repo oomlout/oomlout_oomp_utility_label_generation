@@ -128,6 +128,19 @@ def get_jinja2_template(**kwargs):
         file_template = file_template.replace("/", "\\")
     else:
         file_template = file_template.replace("\\", "/")
+
+    # get the current working directory
+    cwd = os.getcwd()
+    file_name_test_full = os.join(cwd, file_template)
+    #see if in cwwd
+    if os.path.exists(file_template):
+        file_template = file_name_test_full
+    else:
+        file_template = file_template
+
+    
+    
+
     with open(file_template, "r") as infile:
         markdown_string = infile.read()
     data2 = copy.deepcopy(dict_data)
