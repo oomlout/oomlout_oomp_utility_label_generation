@@ -5,18 +5,27 @@ import copy
 import jinja2    
 
 
-folder_configuration = "configuration"
-#add this files current loaction to the folder
-folder_configuration = os.path.join(os.path.dirname(__file__), folder_configuration)
-file_configuration = os.path.join(folder_configuration, "configuration.yaml")
-#import templates
+# local oomp file
+utility_name = os.path.dirname(__file__)
+#grab last directry before filename in utility_name
+utility_name = utility_name.split("\\")[-1]
+test_filename = f"configuration\\{utility_name}_configuration.yaml"
+if os.path.exists(test_filename):
+    file_configuration = test_filename
+else:
+    #default config file
+    folder_configuration = "configuration"
+    #add this files current loaction to the folder
+    folder_configuration = os.path.join(os.path.dirname(__file__), folder_configuration)
+    file_configuration = os.path.join(folder_configuration, "configuration.yaml")
+    #import templates
 with open(file_configuration, 'r') as stream:
     try:
         configuration = yaml.load(stream, Loader=yaml.FullLoader)
     except yaml.YAMLError as exc:   
         print(exc)
 
-    
+pass   
 
 
 for item_details in configuration:
