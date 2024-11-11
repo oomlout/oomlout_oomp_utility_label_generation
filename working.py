@@ -131,7 +131,8 @@ def get_jinja2_template(**kwargs):
 
     # get the current working directory
     cwd = os.getcwd()
-    file_name_test_full = os.join(cwd, file_template)
+    #join cwd and file_template
+    file_name_test_full = os.path.join(cwd, file_template)
     #see if in cwwd
     if os.path.exists(file_template):
         file_template = file_name_test_full
