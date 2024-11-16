@@ -132,9 +132,11 @@ def get_jinja2_template(**kwargs):
     # get the current working directory
     cwd = os.getcwd()
     #join cwd and file_template
-    file_name_test_full = os.path.join(cwd, file_template)
+    directory_current_file = f"{os.path.dirname(__file__)}\\"
+    file_template_just_name = file_template.replace(directory_current_file,"")
+    file_name_test_full = os.path.join(cwd, file_template_just_name)
     #see if in cwwd
-    if os.path.exists(file_template):
+    if os.path.exists(file_name_test_full):
         file_template = file_name_test_full
     else:
         file_template = file_template
