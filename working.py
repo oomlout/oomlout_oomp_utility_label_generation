@@ -4,6 +4,7 @@ import glob
 import copy
 import jinja2    
 
+cnt_label = 1
 
 # local oomp file
 utility_name = os.path.dirname(__file__)
@@ -52,18 +53,45 @@ def create_recursive(**kwargs):
     folder_template_absolute = kwargs.get("folder_template_absolute", "")
     kwargs["folder_template_absolute"] = folder_template_absolute
     filter = kwargs.get("filter", "")
-    count = 0
+    
+    import threading
+    semaphore = threading.Semaphore(1000)
+    threads = []
+
+    def create_thread(**kwargs):
+        with semaphore:
+            create_recursive_thread(**kwargs)
+    
     for item in os.listdir(folder):
-        if filter in item:
-            item_absolute = os.path.join(folder, item)
-            if os.path.isdir(item_absolute):
-                #if working.yaml exists in the folder
-                if os.path.exists(os.path.join(item_absolute, "working.yaml")):
-                    kwargs["directory"] = item_absolute
-                    create(**kwargs)
-                    count += 1
-                    if count % 100 == 0:
-                        print(f"count: {count}")
+        kwargs["filter"] = filter
+        kwargs["folder"] = folder
+        kwargs["item"] = item
+        thread = threading.Thread(target=create_thread, args=(item,), kwargs=kwargs)
+        threads.append(thread)
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    
+        
+        
+        
+        
+def create_recursive_thread(**kwargs):
+    global cnt_label
+    filter = kwargs.get("filter", "")
+    folder = kwargs.get("folder", os.path.dirname(__file__))
+    item = kwargs.get("item", "")        
+    if filter in item:
+        item_absolute = os.path.join(folder, item)
+        if os.path.isdir(item_absolute):
+            #if working.yaml exists in the folder
+            if os.path.exists(os.path.join(item_absolute, "working.yaml")):
+                kwargs["directory"] = item_absolute
+                create(**kwargs)
+                cnt_label += 1
+                if cnt_label % 100 == 0:
+                    print(f".", end="")
 
 def create(**kwargs):
     directory = kwargs.get("directory", os.getcwd())    
