@@ -66,7 +66,7 @@ def create_recursive(**kwargs):
         kwargs["filter"] = filter
         kwargs["folder"] = folder
         kwargs["item"] = item
-        thread = threading.Thread(target=create_thread, args=(item,), kwargs=kwargs)
+        thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
         threads.append(thread)
         thread.start()
     for thread in threads:
