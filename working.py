@@ -3,6 +3,7 @@ import yaml
 import glob
 import copy
 import jinja2    
+import pickle
 
 cnt_label = 1
 
@@ -66,7 +67,8 @@ def create_recursive(**kwargs):
         kwargs["filter"] = filter
         kwargs["folder"] = folder
         kwargs["item"] = item
-        thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
+        #thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
+        thread = threading.Thread(target=create_thread, kwargs=pickle.loads(pickle.dumps(kwargs, -1)))
         threads.append(thread)
         thread.start()
     for thread in threads:
