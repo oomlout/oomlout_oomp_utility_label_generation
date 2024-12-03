@@ -59,53 +59,72 @@ def create_recursive(**kwargs):
     semaphore = threading.Semaphore(1000)
     threads = []
 
-    def create_thread(**kwargs):
+    def create_thread(item, **kwargs):
+    #def create_thread(**kwargs):
         with semaphore:
-            create_recursive_thread(**kwargs)
+            #mode = "pickle"
+            mode = "just_item"
+            if mode == "just_item":
+                create_recursive_thread(item, **kwargs)
+            elif mode == "pickle":
+                create_recursive_thread_kwargs(**kwargs)
     
     for item in os.listdir(folder):
         kwargs["filter"] = filter
         kwargs["folder"] = folder
-        kwargs["item"] = item
+        #make a copy of item using pickle
+        #item2 = pickle.loads(pickle.dumps(item, -1))
+        #kwargs["item"] = item
         #thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
-        thread = threading.Thread(target=create_thread, kwargs=pickle.loads(pickle.dumps(kwargs, -1)))
-        threads.append(thread)
-        thread.start()
-    for thread in threads:
-        thread.join()
+        
+        #mode = "pickle"
+        mode = "just_item"
+        if mode == "pickle":
+            pass
+            #thread = threading.Thread(target=create_thread, kwargs=pickle.loads(pickle.dumps(kwargs, -1)))
+        elif mode == "just_item":
+            thread = threading.Thread(target=create_thread, kwargs = {"item": item, **kwargs})               
+            threads.append(thread)
+            thread.start()
+            for thread in threads:
+                thread.join()
 
     
         
         
+def create_recursive_thread_kwargs(**kwargs):        
+    item = kwargs.get("item", "")
+    create_recursive_thread(item, **kwargs)
+
         
-        
-def create_recursive_thread(**kwargs):
+def create_recursive_thread(item, **kwargs):
     global cnt_label
     filter = kwargs.get("filter", "")
     folder = kwargs.get("folder", os.path.dirname(__file__))
-    item = kwargs.get("item", "")        
+    #item = kwargs.get("item", "")        
     if filter in item:
         item_absolute = os.path.join(folder, item)
         if os.path.isdir(item_absolute):
             #if working.yaml exists in the folder
             if os.path.exists(os.path.join(item_absolute, "working.yaml")):
-                kwargs["directory"] = item_absolute
-                create(**kwargs)
+                #kwargs["directory"] = item_absolute
+                create(item_absolute, **kwargs)
                 cnt_label += 1
                 if cnt_label % 100 == 0:
                     print(f".", end="")
 
-def create(**kwargs):
-    directory = kwargs.get("directory", os.getcwd())    
-    kwargs["directory"] = directory
+def create(item_absolute, **kwargs):
+    #directory = kwargs.get("directory", os.getcwd())    
+    #kwargs["directory"] = directory
+    directory = item_absolute
     file_template_list = kwargs.get("file_template_list", configuration)
     kwargs["file_template_list"] = file_template_list
-    generate_label_generic(**kwargs)
+    generate_label_generic(directory, **kwargs)
     
 
-def generate_label_generic(**kwargs):
+def generate_label_generic(directory, **kwargs):
     import os
-    directory = kwargs.get("directory",os.getcwd())    
+    #directory = kwargs.get("directory",os.getcwd())    
     file_template_list = kwargs.get("file_template_list", configuration)
     
     
@@ -147,10 +166,10 @@ def generate_label_generic(**kwargs):
                 dict_data = details
                 get_jinja2_template(file_template=file_template,file_output=file_output,dict_data=dict_data)
 
-def get_jinja2_template(**kwargs):
+def get_jinja2_template(dict_data={}, **kwargs):
     file_template = kwargs.get("file_template","")
     file_output = kwargs.get("file_output","")
-    dict_data = kwargs.get("dict_data",{})
+    #dict_data = kwargs.get("dict_data",{})
 
     markdown_string = ""
     #if running in windows
@@ -209,5 +228,6 @@ if __name__ == '__main__':
     folder = os.path.dirname(__file__)
     #folder = "C:/gh/oomlout_oomp_builder/parts"
     #folder = "C:/gh/oomlout_oomp_part_generation_version_1/parts"
+    folder = "Z:\\oomlout_oomp_current_version_fast_test\\parts"
     kwargs["folder"] = folder
     main(**kwargs)
