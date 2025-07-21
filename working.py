@@ -55,6 +55,8 @@ def create_recursive(**kwargs):
     kwargs["folder_template_absolute"] = folder_template_absolute
     filter = kwargs.get("filter", "")
     
+    filt = kwargs.get("filter", "")
+
     import threading
     semaphore = threading.Semaphore(1000)
     threads = []
@@ -69,25 +71,48 @@ def create_recursive(**kwargs):
             elif mode == "pickle":
                 create_recursive_thread_kwargs(**kwargs)
     
-    for item in os.listdir(folder):
-        kwargs["filter"] = filter
-        kwargs["folder"] = folder
-        #make a copy of item using pickle
-        #item2 = pickle.loads(pickle.dumps(item, -1))
-        #kwargs["item"] = item
-        #thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
-        
-        #mode = "pickle"
-        mode = "just_item"
-        if mode == "pickle":
-            pass
-            #thread = threading.Thread(target=create_thread, kwargs=pickle.loads(pickle.dumps(kwargs, -1)))
-        elif mode == "just_item":
-            thread = threading.Thread(target=create_thread, kwargs = {"item": item, **kwargs})               
-            threads.append(thread)
-            thread.start()
-            for thread in threads:
-                thread.join()
+    if filt == "":
+        for item in os.listdir(folder):
+            kwargs["filter"] = filter
+            kwargs["folder"] = folder
+            #make a copy of item using pickle
+            #item2 = pickle.loads(pickle.dumps(item, -1))
+            #kwargs["item"] = item
+            #thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
+            
+            #mode = "pickle"
+            mode = "just_item"
+            if mode == "pickle":
+                pass
+                #thread = threading.Thread(target=create_thread, kwargs=pickle.loads(pickle.dumps(kwargs, -1)))
+            elif mode == "just_item":
+                thread = threading.Thread(target=create_thread, kwargs = {"item": item, **kwargs})               
+                threads.append(thread)
+                thread.start()
+                for thread in threads:
+                    thread.join()
+    elif filt != "":
+        print (f"******  filtering for {filt} in {folder}  ******")
+        for item in os.listdir(folder):
+            if filt in item:
+                kwargs["filter"] = filter
+                kwargs["folder"] = folder
+                #make a copy of item using pickle
+                #item2 = pickle.loads(pickle.dumps(item, -1))
+                #kwargs["item"] = item
+                #thread = threading.Thread(target=create_thread, kwargs=copy.deepcopy(kwargs))
+                
+                #mode = "pickle"
+                mode = "just_item"
+                if mode == "pickle":
+                    pass
+                    #thread = threading.Thread(target=create_thread, kwargs=pickle.loads(pickle.dumps(kwargs, -1)))
+                elif mode == "just_item":
+                    thread = threading.Thread(target=create_thread, kwargs = {"item": item, **kwargs})               
+                    threads.append(thread)
+                    thread.start()
+                    for thread in threads:
+                        thread.join()
 
     
         
@@ -127,7 +152,14 @@ def generate_label_generic(directory, **kwargs):
     #directory = kwargs.get("directory",os.getcwd())    
     file_template_list = kwargs.get("file_template_list", configuration)
     
-    
+    file_yaml = f"{directory}/working.yaml"
+    details = {}
+    if os.path.exists(file_yaml):
+        with open(file_yaml, 'r') as stream:
+            try:
+                details = yaml.load(stream, Loader=yaml.FullLoader)
+            except yaml.YAMLError as exc:   
+                print(exc)
 
 
     for file_template_details in file_template_list:
@@ -135,14 +167,7 @@ def generate_label_generic(directory, **kwargs):
         file_output = f"{file_template_details['file_output']}.svg"
         file_output = os.path.join(directory, file_output)
         #      yaml part
-        file_yaml = f"{directory}/working.yaml"
-        details = {}
-        if os.path.exists(file_yaml):
-            with open(file_yaml, 'r') as stream:
-                try:
-                    details = yaml.load(stream, Loader=yaml.FullLoader)
-                except yaml.YAMLError as exc:   
-                    print(exc)
+        
         test_attribute = file_template_details.get("test_attribute", "")
         if details != None:
             if test_attribute == "" or test_attribute in details:
